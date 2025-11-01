@@ -5,7 +5,7 @@ namespace DirectoryService.Domain.Departments
 {
     internal class DepartmentIdentifier : StringHolder, IStringValidatable
     {
-        public DepartmentIdentifier(string value)
+        private DepartmentIdentifier(string value)
             : base(value)
         {
         }
