@@ -3,7 +3,7 @@ using DirectoryService.Domain.Shared.StringValidators;
 
 namespace DirectoryService.Domain.Positions
 {
-    public class PositionDescription : StringHolder, IStringValidatable
+    public record PositionDescription : StringHolder, IStringValidatable
     {
         private PositionDescription(string value)
             : base(value)

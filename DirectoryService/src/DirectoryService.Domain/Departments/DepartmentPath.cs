@@ -2,7 +2,7 @@
 
 namespace DirectoryService.Domain.Departments
 {
-    public class DepartmentPath : DSPathBase
+    public record DepartmentPath : DSPathBase
     {
         protected override char Separator => '.';
 

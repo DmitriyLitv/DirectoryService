@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DirectoryService.Domain.Locations
 {
-    public class LocationAddress
+    public record LocationAddress
     {
         public string ZipCode { get; } = null!;
 

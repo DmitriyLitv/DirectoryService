@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DirectoryService.Domain.Shared
 {
-    public abstract class DSPathBase : StringHolder
+    public abstract record DSPathBase : StringHolder
     {
         protected abstract char Separator { get; }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DirectoryService.Domain.Shared
 {
-    public class StringHolder
+    public record StringHolder
     {
         public string Value { get; }
 

@@ -4,7 +4,7 @@ using DirectoryService.Domain.Shared.StringValidators;
 
 namespace DirectoryService.Domain.Locations
 {
-    public class LocationTimeZone : StringHolder, IStringValidatable
+    public record LocationTimeZone : StringHolder, IStringValidatable
     {
         public LocationTimeZone(string value)
             : base(value)

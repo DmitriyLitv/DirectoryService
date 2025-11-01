@@ -3,7 +3,7 @@ using DirectoryService.Domain.Shared.StringValidators;
 
 namespace DirectoryService.Domain.Locations
 {
-    public class LocationName : StringHolder, IStringValidatable
+    public record LocationName : StringHolder, IStringValidatable
     {
         private LocationName(string value)
             : base(value)
