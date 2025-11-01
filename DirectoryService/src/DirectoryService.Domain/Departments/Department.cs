@@ -8,13 +8,13 @@ namespace DirectoryService.Domain.Departments
 
         public DepartmentName Name { get; private set; } = null!;
 
-        public string Identifier { get; private set; } = null!;
+        public DepartmentIdentifier Identifier { get; private set; } = null!;
 
         public Guid? ParentId { get; private set; }
 
         public short Depth { get; private set; } = 0;
 
-        public string Path { get; private set; } = null!;
+        public DepartmentPath Path { get; private set; } = null!;
 
         public int StateCode { get; private set; } = (int)RecordStateCode.IsActive;
 

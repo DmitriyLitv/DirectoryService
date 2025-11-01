@@ -10,6 +10,16 @@ namespace DirectoryService.Domain.Departments
         {
         }
 
+        public static DepartmentIdentifier Create(string value)
+        {
+            var validator = CreateValidator();
+
+            if (!validator.IsValid(value))
+                return null; // TODO ResultPattern
+
+            return new DepartmentIdentifier(value);
+        }
+
         public static StringValidatorHandler CreateValidator()
         {
             int minLength = 3;

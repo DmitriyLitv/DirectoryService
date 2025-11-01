@@ -1,6 +1,5 @@
 ﻿using DirectoryService.Domain.Shared;
 using DirectoryService.Domain.Shared.StringValidators;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace DirectoryService.Domain.Departments
 {
