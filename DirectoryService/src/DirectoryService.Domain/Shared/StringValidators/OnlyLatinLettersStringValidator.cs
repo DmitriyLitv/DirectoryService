@@ -2,7 +2,7 @@
 
 namespace DirectoryService.Domain.Shared.StringValidators
 {
-    internal class OnlyLatinLettersStringValidator : IStringValidatable
+    internal class OnlyLatinLettersStringValidator : IStringValidator
     {
         private readonly Regex _identifierRegex = new("^[a-zA-Z]+$", RegexOptions.Compiled);
 

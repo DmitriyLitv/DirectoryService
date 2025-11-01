@@ -1,6 +1,6 @@
 ﻿namespace DirectoryService.Domain.Shared.StringValidators
 {
-    internal class LimitedLengthStringValidator : IStringValidatable
+    internal class LimitedLengthStringValidator : IStringValidator
     {
         internal int _minLength = 1;
 

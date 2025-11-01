@@ -1,7 +1,13 @@
-﻿namespace DirectoryService.Domain.Shared.StringValidators
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DirectoryService.Domain.Shared.StringValidators
 {
     internal interface IStringValidatable
     {
-        bool IsValid(string str);
+        abstract static StringValidatorHandler CreateValidator();
     }
 }

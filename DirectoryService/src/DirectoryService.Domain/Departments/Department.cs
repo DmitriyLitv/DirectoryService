@@ -6,7 +6,7 @@ namespace DirectoryService.Domain.Departments
     {
         public Guid Id { get; private set; }
 
-        public string Name { get; private set; } = null!;
+        public DepartmentName Name { get; private set; } = null!;
 
         public string Identifier { get; private set; } = null!;
 
@@ -25,7 +25,9 @@ namespace DirectoryService.Domain.Departments
         public Department()
         {
             Id = Guid.NewGuid();
+
             CreatedAt = DateTime.Now;
+            UpdatedAt = CreatedAt;
         }
     }
 }

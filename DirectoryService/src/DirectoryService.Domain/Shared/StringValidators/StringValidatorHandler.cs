@@ -1,20 +1,20 @@
 ﻿namespace DirectoryService.Domain.Shared.StringValidators
 {
-    internal class StringValidatorHandler : IStringValidatable
+    internal class StringValidatorHandler : IStringValidator
     {
-        private List<IStringValidatable> _validators = new List<IStringValidatable>();
+        private List<IStringValidator> _validators = new List<IStringValidator>();
 
-        public StringValidatorHandler(params IStringValidatable[] validators)
+        public StringValidatorHandler(params IStringValidator[] validators)
         {
             _validators.AddRange([.. validators]);
         }
 
-        public StringValidatorHandler(List<IStringValidatable> validators)
+        public StringValidatorHandler(List<IStringValidator> validators)
         {
             _validators.AddRange(validators);
         }
 
-        public void AddValidator(IStringValidatable validator)
+        public void AddValidator(IStringValidator validator)
         {
             _validators.Add(validator);
         }
