@@ -2,7 +2,7 @@
 
 namespace DirectoryService.Domain.Positions
 {
-    internal class Position
+    public class Position
     {
         public Guid Id { get; private set; }
 

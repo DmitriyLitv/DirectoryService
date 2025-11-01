@@ -3,7 +3,7 @@ using DirectoryService.Domain.Shared.StringValidators;
 
 namespace DirectoryService.Domain.Departments
 {
-    internal class DepartmentName : StringHolder, IStringValidatable
+    public class DepartmentName : StringHolder, IStringValidatable
     {
         private DepartmentName(string value)
             : base(value)

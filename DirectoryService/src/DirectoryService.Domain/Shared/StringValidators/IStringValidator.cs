@@ -1,6 +1,6 @@
 ﻿namespace DirectoryService.Domain.Shared.StringValidators
 {
-    internal interface IStringValidator
+    public interface IStringValidator
     {
         bool IsValid(string str);
     }

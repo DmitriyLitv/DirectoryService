@@ -1,29 +1,29 @@
 ﻿using DirectoryService.Domain.Shared;
 using DirectoryService.Domain.Shared.StringValidators;
 
-namespace DirectoryService.Domain.Positions
+namespace DirectoryService.Domain.Locations
 {
-    public class PositionDescription : StringHolder, IStringValidatable
+    public class LocationName : StringHolder, IStringValidatable
     {
-        private PositionDescription(string value)
+        private LocationName(string value)
             : base(value)
         {
         }
 
-        public static PositionDescription Create(string value)
+        public static LocationName Create(string value)
         {
             var validator = CreateValidator();
 
             if (!validator.IsValid(value))
                 return null; // TODO ResultPattern
 
-            return new PositionDescription(value);
+            return new LocationName(value);
         }
 
         public static StringValidatorHandler CreateValidator()
         {
-            int minLength = 0;
-            int maxLength = 1000;
+            int minLength = 3;
+            int maxLength = 120;
 
             var isEmptyString = new EmptyStringValidator();
             var lengthValidator = new LimitedLengthStringValidator(minLength, maxLength);

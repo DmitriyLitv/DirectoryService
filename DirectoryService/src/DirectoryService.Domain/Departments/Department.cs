@@ -2,7 +2,7 @@
 
 namespace DirectoryService.Domain.Departments
 {
-    internal class Department
+    public class Department
     {
         public Guid Id { get; private set; }
 

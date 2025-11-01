@@ -1,6 +1,6 @@
 ﻿namespace DirectoryService.Domain.Shared.StringValidators
 {
-    internal class StringValidatorHandler : IStringValidator
+    public class StringValidatorHandler : IStringValidator
     {
         private List<IStringValidator> _validators = new List<IStringValidator>();
 
