@@ -24,6 +24,8 @@ namespace DirectoryService.Domain.Departments
 
         public Department()
         {
+            Id = Guid.NewGuid();
+            CreatedAt = DateTime.Now;
         }
     }
 }
