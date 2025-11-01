@@ -1,9 +1,12 @@
-﻿using DirectoryService.Domain.Shared;
+﻿using DirectoryService.Domain.DepartmentPositions;
+using DirectoryService.Domain.Shared;
 
 namespace DirectoryService.Domain.Positions
 {
     public class Position
     {
+        private readonly List<DepartmentPosition> _departmentPositions = [];
+
         public Guid Id { get; private set; }
 
         public PositionName Name { get; private set; } = null!;
@@ -15,6 +18,8 @@ namespace DirectoryService.Domain.Positions
         public DateTime CreatedAt { get; private set; }
 
         public DateTime UpdatedAt { get; private set; }
+
+        public IReadOnlyList<DepartmentPosition> DepartmentPositions => _departmentPositions;
 
         public Position()
         {
