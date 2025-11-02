@@ -7,7 +7,7 @@ namespace DirectoryService.Domain.Locations
 {
     public class Location
     {
-        private List<LocationAddress> _addresses = [];
+        private LocationAddress _address;
 
         private List<DepartmentLocation> _departmentLocations = [];
 
@@ -23,7 +23,7 @@ namespace DirectoryService.Domain.Locations
 
         public DateTime UpdatedAt { get; private set; }
 
-        public IReadOnlyList<LocationAddress> Addresses => _addresses;
+        public LocationAddress Addresses => _address;
 
         public IReadOnlyList<DepartmentLocation> DepartmentLocations => _departmentLocations;
 
