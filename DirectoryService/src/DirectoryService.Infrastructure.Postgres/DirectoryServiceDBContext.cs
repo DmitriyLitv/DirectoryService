@@ -10,7 +10,7 @@ namespace DirectoryService.Infrastructure.Postgres
     public class DirectoryServiceDBContext : DbContext
     {
         private string _connectionString;
-         
+
         public DbSet<Department> Departments => Set<Department>();
 
         public DbSet<Location> Locations => Set<Location>();
@@ -24,6 +24,11 @@ namespace DirectoryService.Infrastructure.Postgres
         public DirectoryServiceDBContext(string connectionString)
         {
             _connectionString = connectionString;
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder) 
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(DirectoryServiceDBContext).Assembly);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
