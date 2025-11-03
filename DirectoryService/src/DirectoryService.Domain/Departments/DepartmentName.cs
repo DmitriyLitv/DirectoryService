@@ -5,6 +5,10 @@ namespace DirectoryService.Domain.Departments
 {
     public record DepartmentName : StringHolder, IStringValidatable
     {
+        protected DepartmentName()// EF Core
+        {
+        }
+
         private DepartmentName(string value)
             : base(value)
         {

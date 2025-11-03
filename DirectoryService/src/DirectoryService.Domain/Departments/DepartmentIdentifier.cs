@@ -1,10 +1,15 @@
 ﻿using DirectoryService.Domain.Shared;
 using DirectoryService.Domain.Shared.StringValidators;
+using System.Runtime.InteropServices;
 
 namespace DirectoryService.Domain.Departments
 {
     public record DepartmentIdentifier : StringHolder, IStringValidatable
     {
+        protected DepartmentIdentifier() // EF Core
+        {
+        }
+
         private DepartmentIdentifier(string value)
             : base(value)
         {

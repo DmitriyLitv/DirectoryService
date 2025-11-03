@@ -19,5 +19,9 @@ namespace DirectoryService.Domain.Locations
         public string HouseNumber { get; } = null!;
 
         public string? Number { get; }
+
+        private LocationAddress()// EF Core
+        {
+        }
     }
 }

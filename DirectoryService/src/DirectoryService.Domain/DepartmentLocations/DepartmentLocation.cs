@@ -8,5 +8,8 @@
 
         public required Guid DepartmentId { get; init; }
 
+        public DepartmentLocation() // EF Core
+        {
+        }
     }
 }

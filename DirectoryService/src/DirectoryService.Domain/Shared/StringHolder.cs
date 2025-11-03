@@ -10,6 +10,12 @@ namespace DirectoryService.Domain.Shared
     {
         public string Value { get; }
 
+        protected StringHolder()
+        {
+            // EF Core
+            Value = string.Empty;
+        }
+
         public StringHolder(string value)
         {
             Value = value;

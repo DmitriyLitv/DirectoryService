@@ -6,6 +6,10 @@ namespace DirectoryService.Domain.Locations
 {
     public record LocationTimeZone : StringHolder, IStringValidatable
     {
+        protected LocationTimeZone() // EF Core
+        {
+        }
+
         public LocationTimeZone(string value)
             : base(value)
         {

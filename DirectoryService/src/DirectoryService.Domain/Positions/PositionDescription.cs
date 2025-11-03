@@ -5,6 +5,10 @@ namespace DirectoryService.Domain.Positions
 {
     public record PositionDescription : StringHolder, IStringValidatable
     {
+        protected PositionDescription()// EF Core
+        {
+        }
+
         private PositionDescription(string value)
             : base(value)
         {

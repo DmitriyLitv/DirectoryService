@@ -5,6 +5,10 @@ namespace DirectoryService.Domain.Locations
 {
     public record LocationName : StringHolder, IStringValidatable
     {
+        protected LocationName() // EF Core
+        {
+        }
+
         private LocationName(string value)
             : base(value)
         {
