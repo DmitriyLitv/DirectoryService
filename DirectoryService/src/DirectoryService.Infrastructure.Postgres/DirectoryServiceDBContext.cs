@@ -17,9 +17,9 @@ namespace DirectoryService.Infrastructure.Postgres
 
         public DbSet<Position> Positions => Set<Position>();
 
-        public DbSet<DepartmentPosition> DepartmentPosition => Set<DepartmentPosition>();
+        // public DbSet<DepartmentPosition> DepartmentPosition => Set<DepartmentPosition>();
 
-        public DbSet<DepartmentLocation> DepartmentLocation => Set<DepartmentLocation>();
+        // public DbSet<DepartmentLocation> DepartmentLocation => Set<DepartmentLocation>();
 
         public DirectoryServiceDBContext(string connectionString)
         {

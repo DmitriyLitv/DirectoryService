@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace DirectoryService.Infrastructure.Postgres.Configurations
 {
-    internal class DepartmentConfiguration : IEntityTypeConfiguration<Department>
+    public class DepartmentConfiguration : IEntityTypeConfiguration<Department>
     {
         public void Configure(EntityTypeBuilder<Department> builder)
         {
@@ -24,6 +24,22 @@ namespace DirectoryService.Infrastructure.Postgres.Configurations
                 .IsRequired()
                 .HasMaxLength(Constants.Lengths500)
                 .HasColumnName("name");
+            });
+
+            builder.OwnsOne(d => d.Path, nb =>
+            {
+                nb.Property(v => v.Value)
+                .IsRequired()
+                .HasMaxLength(Constants.Lengths500)
+                .HasColumnName("path");
+            });
+
+            builder.OwnsOne(d => d.Identifier, nb =>
+            {
+                nb.Property(v => v.Value)
+                .IsRequired()
+                .HasMaxLength(Constants.Lengths500)
+                .HasColumnName("identifier");
             });
 
             builder.Navigation(d => d.Name).IsRequired();

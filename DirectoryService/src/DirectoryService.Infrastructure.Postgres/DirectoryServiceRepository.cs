@@ -11,7 +11,5 @@ namespace DirectoryService.Infrastructure.Postgres
         {
             _context = context;
         }
-
-
     }
 }
