@@ -1,4 +1,6 @@
-﻿namespace DirectoryService.Web
+﻿using DirectoryService.Infrastructure.Postgres;
+
+namespace DirectoryService.Web
 {
     public class Program
     {
@@ -7,6 +9,7 @@
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddOpenApi();
+            builder.Services.AddScoped<DirectoryServiceDBContext>(sp => new DirectoryServiceDBContext(builder.Configuration.GetConnectionString("DirectoryServiceDb")!));
 
             var app = builder.Build();
 
