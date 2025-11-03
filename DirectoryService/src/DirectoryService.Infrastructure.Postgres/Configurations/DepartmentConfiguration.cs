@@ -13,12 +13,7 @@ namespace DirectoryService.Infrastructure.Postgres.Configurations
 
             builder.HasKey(d => d.Id).HasName("id");
 
-            /*builder.Property(d => d.Name)
-                .IsRequired()
-                .HasMaxLength(Constants.Lengths500)
-                .HasColumnName("name");*/
-
-            builder.OwnsOne(d => d.Name, nb =>
+            builder.ComplexProperty(d => d.Name, nb =>
             {
                 nb.Property(v => v.Value)
                 .IsRequired()
@@ -26,7 +21,18 @@ namespace DirectoryService.Infrastructure.Postgres.Configurations
                 .HasColumnName("name");
             });
 
-            builder.OwnsOne(d => d.Path, nb =>
+            builder.Property(x => x.ParentId)
+                .IsRequired(false)
+                .HasColumnName("parent_id")
+                .HasConversion(
+                    value => value!.Value,
+                    value => value);
+
+            builder.Property(x => x.Depth)
+                    .IsRequired()
+                    .HasColumnName("depth");
+
+            builder.ComplexProperty(d => d.Path, nb =>
             {
                 nb.Property(v => v.Value)
                 .IsRequired()
@@ -34,7 +40,7 @@ namespace DirectoryService.Infrastructure.Postgres.Configurations
                 .HasColumnName("path");
             });
 
-            builder.OwnsOne(d => d.Identifier, nb =>
+            builder.ComplexProperty(d => d.Identifier, nb =>
             {
                 nb.Property(v => v.Value)
                 .IsRequired()
@@ -42,7 +48,25 @@ namespace DirectoryService.Infrastructure.Postgres.Configurations
                 .HasColumnName("identifier");
             });
 
-            builder.Navigation(d => d.Name).IsRequired();
+            builder.Property(x => x.UpdatedAt)
+                    .IsRequired()
+                    .HasColumnName("updated_at");
+
+            builder.HasMany(x => x.Locations)
+                    .WithOne()
+                    .HasForeignKey(x => x.Id);
+
+            builder.HasMany(x => x.Positions)
+                    .WithOne()
+                    .HasForeignKey(x => x.Id);
+
+            builder.Property(d => d.CreatedAt)
+                .IsRequired()
+                .HasColumnName("created_at");
+
+            builder.Property(d => d.StateCode)
+                    .IsRequired()
+                    .HasColumnName("is_active");
         }
     }
 }

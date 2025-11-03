@@ -4,6 +4,7 @@ using DirectoryService.Domain.Departments;
 using DirectoryService.Domain.Locations;
 using DirectoryService.Domain.Positions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace DirectoryService.Infrastructure.Postgres
 {
@@ -17,16 +18,16 @@ namespace DirectoryService.Infrastructure.Postgres
 
         public DbSet<Position> Positions => Set<Position>();
 
-        // public DbSet<DepartmentPosition> DepartmentPosition => Set<DepartmentPosition>();
+        public DbSet<DepartmentPosition> DepartmentPosition => Set<DepartmentPosition>();
 
-        // public DbSet<DepartmentLocation> DepartmentLocation => Set<DepartmentLocation>();
+        public DbSet<DepartmentLocation> DepartmentLocation => Set<DepartmentLocation>();
 
         public DirectoryServiceDBContext(string connectionString)
         {
             _connectionString = connectionString;
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder) 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(DirectoryServiceDBContext).Assembly);
         }

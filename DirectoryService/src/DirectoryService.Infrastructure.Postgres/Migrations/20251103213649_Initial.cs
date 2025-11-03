@@ -16,14 +16,14 @@ namespace DirectoryService.Infrastructure.Postgres.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    name = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
+                    parent_id = table.Column<Guid>(type: "uuid", nullable: true),
+                    depth = table.Column<short>(type: "smallint", nullable: false),
+                    is_active = table.Column<int>(type: "integer", nullable: false),
+                    created_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     identifier = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
-                    ParentId = table.Column<Guid>(type: "uuid", nullable: true),
-                    Depth = table.Column<short>(type: "smallint", nullable: false),
-                    path = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
-                    StateCode = table.Column<int>(type: "integer", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    name = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
+                    path = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -73,8 +73,8 @@ namespace DirectoryService.Infrastructure.Postgres.Migrations
                 {
                     table.PrimaryKey("id", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_department_locations_departments_DepartmentId",
-                        column: x => x.DepartmentId,
+                        name: "FK_department_locations_departments_Id",
+                        column: x => x.Id,
                         principalTable: "departments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -98,8 +98,8 @@ namespace DirectoryService.Infrastructure.Postgres.Migrations
                 {
                     table.PrimaryKey("id", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_department_positions_departments_DepartmentId",
-                        column: x => x.DepartmentId,
+                        name: "FK_department_positions_departments_Id",
+                        column: x => x.Id,
                         principalTable: "departments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -112,19 +112,9 @@ namespace DirectoryService.Infrastructure.Postgres.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_department_locations_DepartmentId",
-                table: "department_locations",
-                column: "DepartmentId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_department_locations_LocationId",
                 table: "department_locations",
                 column: "LocationId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_department_positions_DepartmentId",
-                table: "department_positions",
-                column: "DepartmentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_department_positions_PositionId",

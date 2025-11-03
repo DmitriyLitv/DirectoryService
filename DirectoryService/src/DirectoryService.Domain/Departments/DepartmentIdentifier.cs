@@ -1,6 +1,5 @@
 ﻿using DirectoryService.Domain.Shared;
 using DirectoryService.Domain.Shared.StringValidators;
-using System.Runtime.InteropServices;
 
 namespace DirectoryService.Domain.Departments
 {

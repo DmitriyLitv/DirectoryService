@@ -10,7 +10,7 @@ namespace DirectoryService.Domain.Departments
 
         private List<DepartmentPosition> _positions = [];
 
-        public Guid Id { get; private set; }
+        public DepartmentId Id { get; private set; }
 
         public DepartmentName Name { get; private set; } = null!;
 
@@ -34,7 +34,7 @@ namespace DirectoryService.Domain.Departments
 
         public Department()
         {
-            Id = Guid.NewGuid();
+            Id = new DepartmentId(Guid.NewGuid());
 
             CreatedAt = DateTime.Now;
             UpdatedAt = CreatedAt;
