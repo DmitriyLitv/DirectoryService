@@ -12,7 +12,7 @@ namespace DirectoryService.Infrastructure.Postgres.Configurations
         {
             builder.ToTable("department_locations");
 
-            builder.HasKey(dl => dl.Id).HasName("id");
+            builder.HasKey(dl => dl.Id).HasName("pk_department_locations");
         }
     }
 }

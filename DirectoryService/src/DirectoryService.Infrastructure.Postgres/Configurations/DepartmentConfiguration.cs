@@ -11,7 +11,7 @@ namespace DirectoryService.Infrastructure.Postgres.Configurations
         {
             builder.ToTable("departments");
 
-            builder.HasKey(d => d.Id).HasName("id");
+            builder.HasKey(d => d.Id).HasName("pk_departments");
 
             builder.ComplexProperty(d => d.Name, nb =>
             {

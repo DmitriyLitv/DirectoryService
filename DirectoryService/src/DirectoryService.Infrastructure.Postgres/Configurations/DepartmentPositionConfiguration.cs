@@ -11,7 +11,7 @@ namespace DirectoryService.Infrastructure.Postgres.Configurations
         {
             builder.ToTable("department_positions");
 
-            builder.HasKey(dp => dp.Id).HasName("id");
+            builder.HasKey(dp => dp.Id).HasName("pk_department_positions");
 
         }
     }

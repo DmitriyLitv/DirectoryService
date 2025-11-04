@@ -11,25 +11,32 @@ namespace DirectoryService.Infrastructure.Postgres.Configurations
         {
             builder.ToTable("locations");
 
-            builder.HasKey(l => l.Id).HasName("id");
+            builder.HasKey(l => l.Id).HasName("pk_locations");
 
-            builder.OwnsOne(l => l.Name, nb =>
+            builder.Property(l => l.Id).HasColumnName("id").IsRequired();
+            builder.Property(l => l.StateCode).HasColumnName("state").IsRequired();
+            builder.Property(l => l.CreatedAt).HasColumnName("created_at").IsRequired();
+            builder.Property(l => l.UpdatedAt).HasColumnName("updated_at").IsRequired();
+
+           /* builder.OwnsOne(l => l.Name, nb =>
             {
                 nb.Property(v => v.Value)
-                .IsRequired()
-                .HasMaxLength(Constants.Lengths500)
-                .HasColumnName("name");
-            });
+                  .HasColumnName("name")
+                  .HasMaxLength(Constants.Lengths500)
+                  .IsRequired();
+                nb.WithOwner();
+            });*/
+            builder.Navigation(l => l.Name).IsRequired();
 
             builder.OwnsOne(l => l.TimeZone, nb =>
             {
                 nb.Property(v => v.Value)
-                .IsRequired()
-                .HasMaxLength(Constants.Lengths500)
-                .HasColumnName("time_zone");
+                  .HasColumnName("time_zone")
+                  .HasMaxLength(Constants.Lengths500)
+                  .IsRequired();
+                nb.WithOwner();
             });
-
-            builder.Navigation(l => l.Name).IsRequired();
+            builder.Navigation(l => l.TimeZone).IsRequired();
         }
     }
 }

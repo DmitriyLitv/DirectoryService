@@ -30,6 +30,11 @@ namespace DirectoryService.Infrastructure.Postgres
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(DirectoryServiceDBContext).Assembly);
+
+            modelBuilder.Owned<LocationName>();
+            modelBuilder.Owned<LocationTimeZone>();
+            modelBuilder.Owned<PositionName>();
+            modelBuilder.Owned<PositionDescription>();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

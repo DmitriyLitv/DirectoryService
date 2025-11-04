@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DirectoryService.Infrastructure.Postgres.Migrations
 {
     [DbContext(typeof(DirectoryServiceDBContext))]
-    [Migration("20251103213649_Initial")]
-    partial class Initial
+    [Migration("20251104103326_Updated")]
+    partial class Updated
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,7 +38,7 @@ namespace DirectoryService.Infrastructure.Postgres.Migrations
                         .HasColumnType("uuid");
 
                     b.HasKey("Id")
-                        .HasName("id");
+                        .HasName("pk_department_locations");
 
                     b.HasIndex("LocationId");
 
@@ -57,7 +57,7 @@ namespace DirectoryService.Infrastructure.Postgres.Migrations
                         .HasColumnType("uuid");
 
                     b.HasKey("Id")
-                        .HasName("id");
+                        .HasName("pk_department_positions");
 
                     b.HasIndex("PositionId");
 
@@ -124,7 +124,7 @@ namespace DirectoryService.Infrastructure.Postgres.Migrations
                         });
 
                     b.HasKey("Id")
-                        .HasName("id");
+                        .HasName("pk_departments");
 
                     b.ToTable("departments", (string)null);
                 });
@@ -133,19 +133,23 @@ namespace DirectoryService.Infrastructure.Postgres.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
 
                     b.Property<int>("StateCode")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("state");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
 
                     b.HasKey("Id")
-                        .HasName("id");
+                        .HasName("pk_locations");
 
                     b.ToTable("locations", (string)null);
                 });
@@ -154,19 +158,23 @@ namespace DirectoryService.Infrastructure.Postgres.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uuid")
+                        .HasColumnName("id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_at");
 
                     b.Property<int>("StateCode")
-                        .HasColumnType("integer");
+                        .HasColumnType("integer")
+                        .HasColumnName("state");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updated_at");
 
                     b.HasKey("Id")
-                        .HasName("id");
+                        .HasName("pk_positions");
 
                     b.ToTable("positions", (string)null);
                 });
@@ -207,12 +215,6 @@ namespace DirectoryService.Infrastructure.Postgres.Migrations
                         {
                             b1.Property<Guid>("LocationId")
                                 .HasColumnType("uuid");
-
-                            b1.Property<string>("Value")
-                                .IsRequired()
-                                .HasMaxLength(500)
-                                .HasColumnType("character varying(500)")
-                                .HasColumnName("name");
 
                             b1.HasKey("LocationId");
 
@@ -257,7 +259,6 @@ namespace DirectoryService.Infrastructure.Postgres.Migrations
 
                             b1.Property<string>("Value")
                                 .IsRequired()
-                                .ValueGeneratedOnUpdateSometimes()
                                 .HasMaxLength(500)
                                 .HasColumnType("character varying(500)")
                                 .HasColumnName("description");
@@ -277,12 +278,14 @@ namespace DirectoryService.Infrastructure.Postgres.Migrations
 
                             b1.Property<string>("Value")
                                 .IsRequired()
-                                .ValueGeneratedOnUpdateSometimes()
                                 .HasMaxLength(500)
                                 .HasColumnType("character varying(500)")
-                                .HasColumnName("description");
+                                .HasColumnName("name");
 
                             b1.HasKey("PositionId");
+
+                            b1.HasIndex("Value")
+                                .IsUnique();
 
                             b1.ToTable("positions");
 
