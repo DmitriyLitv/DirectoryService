@@ -1,4 +1,6 @@
-﻿namespace DirectoryService.Domain.Shared.StringValidators
+﻿using DirectoryService.Domain.Shared.Errors;
+
+namespace DirectoryService.Domain.Shared.StringValidators
 {
     internal class LimitedLengthStringValidator : IStringValidator
     {
@@ -12,9 +14,13 @@
             _maxLength = maxLength;
         }
 
-        public bool IsValid(string str)
+        public Error? IsValid(string str)
         {
-            return str.Length < _minLength || str.Length > _maxLength;
+            var isValid = str.Length < _minLength || str.Length > _maxLength;
+
+            return isValid
+                ? null
+                : GeneralErrors.ValueIsInvalid(str);
         }
     }
 }

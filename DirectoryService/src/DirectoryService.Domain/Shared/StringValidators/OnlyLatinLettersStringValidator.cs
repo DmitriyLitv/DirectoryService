@@ -1,4 +1,5 @@
 ﻿using System.Text.RegularExpressions;
+using DirectoryService.Domain.Shared.Errors;
 
 namespace DirectoryService.Domain.Shared.StringValidators
 {
@@ -6,9 +7,13 @@ namespace DirectoryService.Domain.Shared.StringValidators
     {
         private readonly Regex _identifierRegex = new("^[a-zA-Z]+$", RegexOptions.Compiled);
 
-        public bool IsValid(string str)
+        public Error? IsValid(string str)
         {
-           return _identifierRegex.IsMatch(str);
+            var isValid = _identifierRegex.IsMatch(str);
+
+            return isValid
+                ? null
+                : GeneralErrors.ValueIsInvalid(str);
         }
     }
 }

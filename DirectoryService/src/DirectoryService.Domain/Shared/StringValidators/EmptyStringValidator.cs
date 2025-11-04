@@ -1,10 +1,15 @@
-﻿namespace DirectoryService.Domain.Shared.StringValidators
+﻿using DirectoryService.Domain.Shared.Errors;
+
+namespace DirectoryService.Domain.Shared.StringValidators
 {
     internal class EmptyStringValidator : IStringValidator
     {
-        public bool IsValid(string str)
+        public Error? IsValid(string str)
         {
-            return string.IsNullOrWhiteSpace(str);
+            var isValid = string.IsNullOrWhiteSpace(str);
+            return isValid
+                    ? null
+                    : GeneralErrors.ValueIsInvalid(str);
         }
     }
 }

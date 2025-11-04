@@ -1,13 +1,11 @@
 ﻿using DirectoryService.Domain.DepartmentLocations;
-using DirectoryService.Domain.Positions;
 using DirectoryService.Domain.Shared;
-using System.Net;
 
 namespace DirectoryService.Domain.Locations
 {
     public class Location
     {
-        private LocationAddress _address;
+        private LocationAddress _address = null!;
 
         private List<DepartmentLocation> _departmentLocations = [];
 

@@ -1,5 +1,6 @@
-﻿using DirectoryService.Domain.Departments;
+﻿using CSharpFunctionalExtensions;
 using DirectoryService.Domain.Shared;
+using DirectoryService.Domain.Shared.Errors;
 using DirectoryService.Domain.Shared.StringValidators;
 
 namespace DirectoryService.Domain.Positions
@@ -15,14 +16,20 @@ namespace DirectoryService.Domain.Positions
         {
         }
 
-        public static PositionName Create(string value)
+        public static Result<PositionName, Error> Create(string value)
+        {
+            var error = ValidationResult(value);
+
+            return error != null ? error : new PositionName(value);
+        }
+
+        private static Error? ValidationResult(string value)
         {
             var validator = CreateValidator();
 
-            if (!validator.IsValid(value))
-                return null; // TODO ResultPattern
+            var result = validator?.IsValid(value);
 
-            return new PositionName(value);
+            return result;
         }
 
         public static StringValidatorHandler CreateValidator()
