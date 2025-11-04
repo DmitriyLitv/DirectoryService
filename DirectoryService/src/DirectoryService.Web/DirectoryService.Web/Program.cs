@@ -1,4 +1,6 @@
 ﻿using DirectoryService.Infrastructure.Postgres;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace DirectoryService.Web
 {
@@ -9,7 +11,19 @@ namespace DirectoryService.Web
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddOpenApi();
-            builder.Services.AddScoped<DirectoryServiceDBContext>(sp => new DirectoryServiceDBContext(builder.Configuration.GetConnectionString("DirectoryServiceDb")!));
+            builder.Services.AddDbContext<DirectoryServiceDBContext>((sp, opts) =>
+            {
+                opts.UseNpgsql(builder.Configuration.GetConnectionString("Pg"));
+
+                var lf = sp.GetRequiredService<ILoggerFactory>();
+                opts.UseLoggerFactory(lf);
+
+                opts.LogTo(Console.WriteLine,
+                    new[] { RelationalEventId.CommandExecuted },
+                    LogLevel.Information);
+
+                opts.EnableDetailedErrors();
+            });
 
             var app = builder.Build();
 
