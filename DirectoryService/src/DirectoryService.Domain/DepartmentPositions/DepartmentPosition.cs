@@ -7,5 +7,9 @@
         public required Guid PositionId { get; init; }
 
         public required Guid DepartmentId { get; init; }
+
+        public DepartmentPosition()// EF Core
+        {
+        }
     }
 }

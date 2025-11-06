@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DirectoryService.Domain.Shared.Errors;
 
 namespace DirectoryService.Domain.Shared.StringValidators
 {
     internal class StringAsTimeZoneValidator : IStringValidator
     {
-        public bool IsValid(string str)
+        public Error? IsValid(string str)
         {
-            return TimeZoneInfo.TryFindSystemTimeZoneById(str, out _);
+            var isValid = TimeZoneInfo.TryFindSystemTimeZoneById(str, out _);
+
+            return isValid
+                ? null
+                : GeneralErrors.ValueIsInvalid(str);
         }
     }
 }

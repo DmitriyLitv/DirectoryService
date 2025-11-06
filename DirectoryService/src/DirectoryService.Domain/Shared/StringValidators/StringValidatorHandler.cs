@@ -1,4 +1,6 @@
-﻿namespace DirectoryService.Domain.Shared.StringValidators
+﻿using DirectoryService.Domain.Shared.Errors;
+
+namespace DirectoryService.Domain.Shared.StringValidators
 {
     public class StringValidatorHandler : IStringValidator
     {
@@ -19,14 +21,16 @@
             _validators.Add(validator);
         }
 
-        public bool IsValid(string str)
+        public Error? IsValid(string str)
         {
-            bool result = true;
-
             foreach (var validator in _validators)
-                result &= validator.IsValid(str);
+            {
+                Error? validationResult = validator.IsValid(str);
+                if (validationResult != null)
+                    return validationResult;
+            }
 
-            return result;
+            return null;
         }
     }
 }

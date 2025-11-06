@@ -6,6 +6,10 @@ namespace DirectoryService.Domain.Departments
     {
         protected override char Separator => '.';
 
+        protected DepartmentPath()// EF Core
+        {
+        }
+
         public DepartmentPath(string value)
             : base(value)
         {

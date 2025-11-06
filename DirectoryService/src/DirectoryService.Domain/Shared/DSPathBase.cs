@@ -10,6 +10,10 @@ namespace DirectoryService.Domain.Shared
     {
         protected abstract char Separator { get; }
 
+        protected DSPathBase()// EF Core
+        {
+        }
+
         protected DSPathBase(string value)
             : base(value)
         {
