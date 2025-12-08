@@ -21,7 +21,7 @@ namespace DirectoryService.Domain.Locations
 
         public DateTime UpdatedAt { get; private set; }
 
-        public LocationAddress Addresses => _address;
+        public LocationAddress Address => _address;
 
         public IReadOnlyList<DepartmentLocation> DepartmentLocations => _departmentLocations;
 
